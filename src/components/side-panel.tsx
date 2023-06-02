@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 
-interface Props{
+interface DataProps {
   name: string;
-  image_background: string
+  image_background: string;
+  id: number;
+}
+interface Props {
+  setGenre: (val: number) => void;
 }
 
-const SidePanel = () => {
-  const [genreList, setGenreList] = useState(null);
+const SidePanel = ({ setGenre }: Props) => {
   const { data, isLoading, isError, refetch } = useQuery(["genre"], () => {
     return Axios.get(
       "https://api.rawg.io/api/genres?key=3c809f59bdbe43b399cb764cb901f09a"
@@ -17,14 +20,19 @@ const SidePanel = () => {
 
   return (
     <div className="side-panel">
-      <h3>Genres</h3>
+      
       {!isLoading &&
-        data.results.map((res:Props) => {
+        data.results.map((res: DataProps) => {
           return (
-            <div className="genre">
-              <img src={res.image_background }/>
-              <p>{res.name}</p>
-            </div>
+            <div
+              className="genre"
+              onClick={() => {
+                setGenre(res.id); 
+              }}
+            >
+              <img src={res.image_background} />
+              <div>{res.name}</div>
+              </div>
           );
         })}
     </div>
