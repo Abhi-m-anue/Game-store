@@ -8,14 +8,10 @@ const Skeleton = () => {
           {/* <h5 className="card-title placeholder-glow">
             <span className="placeholder col-7"></span>
           </h5> */}
-          <p className="card-text placeholder-glow">
-            <span className="placeholder" style={{height:"100px", width:"100%"}}></span>
-            <div className="wraper" style={{padding:"10px 10px 10px 10px", backgroundColor:"inherit"}}>
-                <span className="placeholder col-6 placeholder-lg" ></span>
-                <span className="placeholder col-10 placeholder-sm"></span>
-                <span className="placeholder col-10 placeholder-sm"></span>
-            </div>
-          </p>
+          <p className="card-text placeholder-glow" style={{height:"60%", width:"100%",marginBottom:"10px"}}></p>
+          <p className="card-text placeholder-glow" style={{height:"7%", width:"95%",marginTop:"10px"}}></p>
+          <p className="card-text placeholder-glow" style={{height:"7%", width:"95%",marginTop:"10px"}}></p>
+          <p className="card-text placeholder-glow" style={{height:"7%", width:"55%",marginTop:"10px"}}></p>
           {/* <a
             href="#"
             className="btn btn-primary disabled placeholder col-6"

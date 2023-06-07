@@ -17,17 +17,19 @@ const SidePanel = ({ setGenre }: Props) => {
       "https://api.rawg.io/api/genres?key=3c809f59bdbe43b399cb764cb901f09a"
     ).then((res) => res.data);
   });
+  const[genreSelection,setGenreSelection]=useState(-1);
 
   return (
     <div className="side-panel">
       
       {!isLoading &&
-        data.results.map((res: DataProps) => {
+        data.results.map((res: DataProps,i:number) => {
           return (
             <div
-              className="genre"
+              className={genreSelection === i? "genre selected-genre":"genre"}
               onClick={() => {
                 setGenre(res.id); 
+                setGenreSelection(i);
               }}
             >
               <img src={res.image_background} />
