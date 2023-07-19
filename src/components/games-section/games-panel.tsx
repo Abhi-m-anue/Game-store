@@ -21,7 +21,7 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
     isFetching,
   } = useQuery(["games"], () => {
     return Axios.get(
-      `https://api.rawg.io/api/games?key=3c809f59bdbe43b399cb764cb901f09a${
+      `https://api.rawg.io/api/games?key=3c809f59bdbe43b399cb764cb901f09a&page_size=40${
         sortValue ? `&ordering=${sortValue}` : ""
       }${searchValue ? `&search=${searchValue}` : ""}${
         genre != 0 ? `&genres=${genre}` : ""
@@ -36,7 +36,7 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
   const [platform, setPlatform] = useState(0);
   const [selectedPlatform,setSelectedPlatform]=useState("All");
   const [selectedSort,setSelectedSort]=useState("Relevance");
-  const n = 20;
+  const n = 40;
 
   // const {
   //   data
@@ -150,7 +150,7 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
             Sort by:{selectedSort}
           </button>
           <div className={sortClicked ? "enable" : "sort-list"}>
-            <ul
+            <ul id="sort-list"
               onClick={() => {
                 setSortClicked(false);
               }}

@@ -58,9 +58,9 @@
 } */
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: #222020;
-}
+} */
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -71,17 +71,20 @@
 } */
 
 .genre{
-  color: #CDCDCC;
   display: flex;
   height: 28px;
-  font-size: 15px;
+  font-size: 14px;
   margin-top: 10px;
+}
+.genre >div{
+  color: #d6d6ce !important;
 }
 .genre:hover{
   cursor: pointer;
   text-decoration: underline;
 }
 .selected-genre{
+  color:#ffff;
   height: 30px;
   font-size: 16px;
   font-weight: bold;
@@ -121,7 +124,7 @@ ul{
   list-style-type: none;
   font-size: 14px;
   margin-top: 6px;
-  padding: 6px;
+  /* padding: 6px; */
   border-radius: 5px;
   overflow: hidden;
 }
@@ -129,7 +132,10 @@ li{
   background-color: inherit;
   padding:5px;
   vertical-align:middle;
-  border-radius: 5px;
+  margin-left:7px;
+  margin-right:7px;
+  margin-top: 7px !important;
+  /* border-radius: 5px; */
   overflow: hidden;
 }
 li:hover{
@@ -169,7 +175,10 @@ li:hover{
   display: none;
 }
 #platforms-list{
-  width:110px
+  width:150px
+}
+#sort-list{
+  width:170px;
 }
 button:hover{
   cursor: pointer;
@@ -220,14 +229,15 @@ button:hover{
   background-color: inherit;
 }
 .placeholder-glow{
+  opacity:.7;
   animation: skeleton-loading 1s linear infinite alternate;
 }
 @keyframes skeleton-loading {
   0%{
-    background-color: hsl(200, 3%, 37%);
+    background-color: hsl(203, 6%, 25%);
   }
   100%{
-    background-color: hsl(199, 8%, 61%);
+    background-color: hsl(196, 7%, 60%);
   }
 }
 .game-card > img{
