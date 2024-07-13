@@ -23,7 +23,6 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [genre,setGenre]=useState(0);
   const [showSidePanel,setShowSidePanel] = useState(false);
-  console.log(showSidePanel)
     return (
     <div className="App">
       <QueryClientProvider client={client}>
@@ -36,7 +35,6 @@ function App() {
           setShowSidePanel(!showSidePanel)}}>
         <FaBars></FaBars>
         </button>}
-
         <SidePanel setGenre={setGenre} showSidePanel = {showSidePanel}></SidePanel>
         <div className='body-section'>
           <Navbar setGenre={setGenre} setSearchValue={setSearchValue}></Navbar>

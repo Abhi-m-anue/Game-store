@@ -16,7 +16,7 @@ interface Props {
 const SidePanel = ({ setGenre, showSidePanel }: Props) => {
   const { data, isLoading, isError, refetch } = useQuery({ queryKey: ["genre"], queryFn: () => {
     return Axios.get(
-      "https://api.rawg.io/api/genres?key=9c922c406b014c67b81398655675f3ed&page_size=14"
+      "https://api.rawg.io/api/genres?key=9c922c406b014c67b81398655675f3ed&page_size=17"
     ).then((res) => res.data);
   }});
   const[genreSelection,setGenreSelection]=useState(-1);

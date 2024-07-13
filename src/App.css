@@ -28,6 +28,13 @@
 }
 .searchForm{
   width: 70%;
+  display: flex;
+  height: max-content;
+}
+.home-btn{
+  background-color:inherit;
+  border: none;
+  margin-left: 20px;
 }
 .Search-bar{
   background-color: #3B3B3B;
@@ -62,7 +69,13 @@
   /* top:7.5ch; */
   /* bottom:0; */
 }
-
+.box{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: scroll; */
+  /* margin-bottom: 20px; */
+}
 .box >h1{
   /* margin-bottom: 17px;
   margin-top: 17px; */
@@ -100,7 +113,7 @@
 
 .genre{
   display: flex;
-  height: 28px;
+  height: 10vh;
   font-size: 14px;
   margin-top: 10px;
 }

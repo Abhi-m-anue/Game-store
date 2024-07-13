@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { IoMdHome } from "react-icons/io";
+
 
 // &#128269;
 interface Props {
@@ -7,24 +9,23 @@ interface Props {
 }
 
 const Navbar = ({ setSearchValue, setGenre}: Props) => {
-  const [value,setValue] = useState('') 
   return (
     <div className="Navbar">
       <h1 className="games-title" onClick={()=>{
         setGenre(0);
       }}>Games</h1>
-      <form className="searchForm" onSubmit={(e)=>{
-        e.preventDefault()
-        setSearchValue(value)
-      }}>
+      <form className="searchForm" onKeyDown={(e)=>{e.key === 'Enter' && e.preventDefault()}}>
         <input
           className="Search-bar"
           placeholder="Search for games"
           onChange={(e) => {
-            setValue(e.target.value);
+            setSearchValue(e.target.value);
             // console.log(e.target.value)
           }}
         ></input>
+        <button className="home-btn" onClick={()=>{
+          window.location.reload();
+        }}><IoMdHome style={{fontSize: "30px"}}/></button>
       </form>
     </div>
   );
