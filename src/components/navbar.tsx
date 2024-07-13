@@ -7,17 +7,21 @@ interface Props {
 }
 
 const Navbar = ({ setSearchValue, setGenre}: Props) => {
+  const [value,setValue] = useState('') 
   return (
     <div className="Navbar">
       <h1 className="games-title" onClick={()=>{
         setGenre(0);
       }}>Games</h1>
-      <form>
+      <form className="searchForm" onSubmit={(e)=>{
+        e.preventDefault()
+        setSearchValue(value)
+      }}>
         <input
           className="Search-bar"
           placeholder="Search for games"
           onChange={(e) => {
-            setSearchValue(e.target.value);
+            setValue(e.target.value);
             // console.log(e.target.value)
           }}
         ></input>

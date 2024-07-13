@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton from "./skeleton";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { RiArrowDropUpLine } from "react-icons/ri";
 
 interface Props {
   searchValue: string;
@@ -19,16 +21,28 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
     isError,
     refetch,
     isFetching,
-  } = useQuery(["games"], () => {
+  } = useQuery({ queryKey: ["games"], queryFn: () => {
     return Axios.get(
-      `https://api.rawg.io/api/games?key=3c809f59bdbe43b399cb764cb901f09a&page_size=40${
+      `https://api.rawg.io/api/games?key=9c922c406b014c67b81398655675f3ed&page_size=40${
         sortValue ? `&ordering=${sortValue}` : ""
       }${searchValue ? `&search=${searchValue}` : ""}${
         genre != 0 ? `&genres=${genre}` : ""
       }${platform ? `&platforms=${platform}` : ""}
      `
     ).then((res) => res.data);
-  });
+  }});
+
+// const GamesPanel = ({ searchValue, genre }: Props) => {
+//   const {
+//     data: gameData,
+//     isError,
+//     refetch,
+//     isFetching,
+//   } = useQuery({queryKey: ["games"], queryFn:  () => {
+//     return Axios.get(
+//       `https://api.rawg.io/api/games?key=9c922c406b014c67b81398655675f3ed`
+//     ).then((res) => res.data);
+//   }});
 
   const [sortClicked, setSortClicked] = useState(false);
   const [platformsClicked, setPlatformsClicked] = useState(false);
@@ -66,7 +80,11 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
             }}
           >
              {selectedPlatform ==="All"?"Platforms":selectedPlatform}
+             { !platformsClicked && <RiArrowDropDownLine style={{backgroundColor : 'transparent',fontSize: '20px'}} />}
+             { platformsClicked && <RiArrowDropUpLine style={{backgroundColor : 'transparent',fontSize: '20px'}}  />}
           </button>
+          
+
           <div className={platformsClicked ? "enable" : "platforms-list"}>
             <ul
               id="platforms-list"
@@ -147,7 +165,10 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
               setPlatformsClicked(false);
             }}
           >
-            Sort by:{selectedSort}
+            Sort by : 
+           {selectedSort}
+            { !sortClicked && <RiArrowDropDownLine style={{backgroundColor : 'transparent',fontSize: '20px'}} />}
+             { sortClicked && <RiArrowDropUpLine style={{backgroundColor : 'transparent',fontSize: '20px'}}  />}
           </button>
           <div className={sortClicked ? "enable" : "sort-list"}>
             <ul id="sort-list"
@@ -225,8 +246,9 @@ const GamesPanel = ({ searchValue, genre }: Props) => {
               </div>
             );
           })}
-        {isFetching &&
-          [...Array(n)].map((e, i) => <Skeleton key={i}></Skeleton>)}
+          <div className="skeleton-wrapper"> {isFetching &&
+          [...Array(n)].map((e, i) => <Skeleton key={i}></Skeleton>)}</div>
+       
       </div>
     </div>
   );
